@@ -3,26 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.uknow.bestmoto.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.uknow.bestmoto.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+    app:startDestination="@id/navigation_home">
+    <navigation android:id="@+id/navigation_home"
+        app:startDestination="@id/homeFragment">
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.home.HomeFragment"
+            android:label="fragment_home"
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_homeFragment_to_bikeDetailFragment"
+                app:destination="@id/bikeDetailFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_equipmentDetailFragment"
+                app:destination="@id/equipmentDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/bikeDetailFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.detail.bike.BikeDetailFragment"
+            android:label="fragment_bike_detail"
+            tools:layout="@layout/fragment_bike_detail" />
+        <fragment
+            android:id="@+id/equipmentDetailFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.detail.equipment.EquipmentDetailFragment"
+            android:label="fragment_equipment_detail"
+            tools:layout="@layout/fragment_equipment_detail" />
+    </navigation>
+    <navigation android:id="@+id/navigation_cart"
+        app:startDestination="@id/cartFragment">
+        <fragment
+            android:id="@+id/cartFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.cart.CartFragment"
+            android:label="fragment_cart"
+            tools:layout="@layout/fragment_cart" />
+    </navigation>
+    <navigation android:id="@+id/navigation_profile"
+        app:startDestination="@id/profileFragment">
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.profile.ProfileFragment"
+            android:label="fragment_profile"
+            tools:layout="@layout/fragment_profile" />
+    </navigation>
+    <navigation android:id="@+id/navigation_auth"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.login.LoginFragment"
+            android:label="fragment_login"
+            tools:layout="@layout/fragment_login" />
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.registration.RegistrationFragment"
+            android:label="fragment_registration"
+            tools:layout="@layout/fragment_registration" />
+    </navigation>
 </navigation>
