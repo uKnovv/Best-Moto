@@ -19,8 +19,4 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRegistrationBinding.bind(view)
     }
-
-    companion object {
-
-    }
 }

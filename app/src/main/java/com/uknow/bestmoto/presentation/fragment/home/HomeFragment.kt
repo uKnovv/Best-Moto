@@ -1,14 +1,21 @@
 package com.uknow.bestmoto.presentation.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uknow.bestmoto.R
 import com.uknow.bestmoto.databinding.FragmentHomeBinding
 import com.uknow.bestmoto.model.Bike
 import com.uknow.bestmoto.model.Equipment
+import com.uknow.bestmoto.presentation.activity.main.SharedViewModel
 import com.uknow.bestmoto.presentation.adapter.BikesAdapter
 import com.uknow.bestmoto.presentation.adapter.EquipmentAdapter
 
@@ -22,15 +29,19 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     private val bikesDataSet = mutableListOf<Bike>()
     private val equipmentDataSet = mutableListOf<Equipment>()
 
+    private val sharedViewModel by activityViewModels<SharedViewModel>()
+    private lateinit var viewModel: HomeFragmentViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
 
         // Delete it later pls
         bikesDataSet.add(Bike("Nigga"))
         bikesDataSet.add(Bike("Nigga"))
         equipmentDataSet.add(Equipment("Eldak"))
         equipmentDataSet.add(Equipment("Analnya Zatiychka"))
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,6 +66,19 @@ class HomeFragment : Fragment(R.layout.fragment_home),
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect { newState ->
+                updateUI(newState)
+            }
+        }
+    }
+
+    private fun updateUI(state: HomeFragmentState) {
+
     }
 
     private fun clearAndUpdateBikesRecycler(newDataSet: List<Bike>) {
@@ -84,16 +108,24 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     }
 
     override fun onClick(bike: Bike, position: Int) {
-        Toast.makeText(requireContext(), "Bike $position", Toast.LENGTH_SHORT).show()
-        // navigate to details
+        sharedViewModel.setSelectedBike(bike)
+        navigateToBikeDetails()
     }
 
     override fun onClick(equipment: Equipment, position: Int) {
-        Toast.makeText(requireContext(), "Equipment: $position", Toast.LENGTH_SHORT).show()
-        // navigate to details
+        sharedViewModel.setSelectedEquipment(equipment)
+        navigateToEquipmentDetails()
     }
 
-    companion object {
-        private val TAG = HomeFragment().tag
+    private fun navigateToBikeDetails() {
+        val directions = HomeFragmentDirections.actionHomeFragmentToBikeDetailFragment()
+        val extras = FragmentNavigatorExtras()
+        findNavController().navigate(directions, extras)
+    }
+
+    private fun navigateToEquipmentDetails() {
+        val directions = HomeFragmentDirections.actionHomeFragmentToEquipmentDetailFragment()
+        val extras = FragmentNavigatorExtras()
+        findNavController().navigate(directions, extras)
     }
 }

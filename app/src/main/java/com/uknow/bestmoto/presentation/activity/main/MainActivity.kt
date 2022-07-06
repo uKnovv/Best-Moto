@@ -3,6 +3,7 @@ package com.uknow.bestmoto.presentation.activity.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.uknow.bestmoto.R
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setupBottomNavigation()
+
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
     }
 
     private fun setupBottomNavigation() {

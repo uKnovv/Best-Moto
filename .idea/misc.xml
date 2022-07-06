@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2057460611677479" />
         <entry key="app/src/main/res/layout/bike_item.xml" value="0.29635416666666664" />
         <entry key="app/src/main/res/layout/equipment_item.xml" value="0.29739583333333336" />
-        <entry key="app/src/main/res/layout/fragment_bike_detail.xml" value="0.146875" />
+        <entry key="app/src/main/res/layout/fragment_bike_detail.xml" value="0.21127777099609374" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_equipment_detail.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.29739583333333336" />
@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/purchase_item.xml" value="0.29635416666666664" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.29635416666666664" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.29739583333333336" />
       </map>

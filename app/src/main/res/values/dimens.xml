@@ -21,5 +21,4 @@
     <dimen name="layout_content_padding_normal">8dp</dimen>
     <dimen name="layout_content_padding_large">12dp</dimen>
 
-
 </resources>
