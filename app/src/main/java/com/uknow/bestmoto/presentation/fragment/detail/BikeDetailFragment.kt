@@ -1,19 +1,18 @@
-package com.uknow.bestmoto.presentation.fragment.detail.equipment
+package com.uknow.bestmoto.presentation.fragment.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.uknow.bestmoto.R
-import com.uknow.bestmoto.databinding.FragmentEquipmentDetailBinding
-import com.uknow.bestmoto.model.Bike
-import com.uknow.bestmoto.model.Equipment
+import com.uknow.bestmoto.databinding.FragmentBikeDetailBinding
+import com.uknow.bestmoto.model.Item
 import com.uknow.bestmoto.presentation.activity.main.SharedViewModel
 import com.uknow.bestmoto.util.setupAutoExtendFab
 
-class EquipmentDetailFragment : Fragment(R.layout.fragment_equipment_detail) {
+class BikeDetailFragment : Fragment(R.layout.fragment_bike_detail) {
 
-    private lateinit var binding: FragmentEquipmentDetailBinding
+    private lateinit var binding: FragmentBikeDetailBinding
 
     private val sharedViewModel by activityViewModels<SharedViewModel>()
 
@@ -24,7 +23,7 @@ class EquipmentDetailFragment : Fragment(R.layout.fragment_equipment_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentEquipmentDetailBinding.bind(view)
+        binding = FragmentBikeDetailBinding.bind(view)
         binding.run {
             nsvContent.setupAutoExtendFab(fabAddToCart)
         }
@@ -32,12 +31,12 @@ class EquipmentDetailFragment : Fragment(R.layout.fragment_equipment_detail) {
 
     override fun onStart() {
         super.onStart()
-        sharedViewModel.getSelectedEquipment().observe(viewLifecycleOwner) { selectedEquipment ->
-            updateUI(selectedEquipment)
+        sharedViewModel.getSelectedItem().observe(viewLifecycleOwner) { selectedItem ->
+            updateUI(selectedItem)
         }
     }
 
-    private fun updateUI(equipment: Equipment) {
+    private fun updateUI(item: Item) {
 
     }
 }

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import kotlinx.coroutines.flow.MutableStateFlow
 
 internal fun ImageView.setImageAsync(resId: Int) {
     Glide.with(this.context)
@@ -36,6 +37,16 @@ internal fun NestedScrollView.setupAutoExtendFab(extFab: ExtendedFloatingActionB
             }
         }
     )
+}
+
+inline fun <T> MutableStateFlow<T>.update(function: (T) -> T) {
+    while (true) {
+        val prevValue = value
+        val nextValue = function(prevValue)
+        if (compareAndSet(prevValue, nextValue)) {
+            return
+        }
+    }
 }
 
 internal fun Fragment.getClassName(): String {

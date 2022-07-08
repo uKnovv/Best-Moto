@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragment.detail.bike.BikeDetailFragment">
+    tools:context=".presentation.fragment.detail.BikeDetailFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvContent"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:text="@string/add_to_cart"
+        android:text="@string/fab_add_to_cart"
         app:iconGravity="end"
         app:icon="@drawable/ic_shopping_bag_48"
         android:layout_margin="@dimen/fab_margin"

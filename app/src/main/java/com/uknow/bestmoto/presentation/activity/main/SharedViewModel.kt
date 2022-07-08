@@ -3,25 +3,16 @@ package com.uknow.bestmoto.presentation.activity.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.uknow.bestmoto.model.Bike
-import com.uknow.bestmoto.model.Equipment
+import com.uknow.bestmoto.model.Item
 
 class SharedViewModel: ViewModel() {
 
-    private val selectedBike = MutableLiveData<Bike>()
-    private val selectedEquipment = MutableLiveData<Equipment>()
+    private val selectedItem = MutableLiveData<Item>()
 
-    fun getSelectedBike(): LiveData<Bike> = selectedBike
+    fun getSelectedItem(): LiveData<Item> = selectedItem
 
-    fun getSelectedEquipment(): LiveData<Equipment> = selectedEquipment
-
-    fun setSelectedBike(bike: Bike) {
-        selectedBike.value = bike
+    fun setSelectedBike(item: Item) {
+        selectedItem.value = item
     }
-
-    fun setSelectedEquipment(equipment: Equipment) {
-        selectedEquipment.value = equipment
-    }
-
 
 }

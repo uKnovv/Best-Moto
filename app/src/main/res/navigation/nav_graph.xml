@@ -20,7 +20,7 @@
         </fragment>
         <fragment
             android:id="@+id/bikeDetailFragment"
-            android:name="com.uknow.bestmoto.presentation.fragment.detail.bike.BikeDetailFragment"
+            android:name="com.uknow.bestmoto.presentation.fragment.detail.BikeDetailFragment"
             android:label="fragment_bike_detail"
             tools:layout="@layout/fragment_bike_detail" />
         <fragment

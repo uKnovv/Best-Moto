@@ -3,13 +3,32 @@
     <string name="app_name">Best Moto</string>
 
     <!-- TITLES -->
-    <string name="home_title">Home</string>
-    <string name="cart_title">Cart</string>
-    <string name="profile_title">Profile</string>
+    <string name="title_home">Home</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_sign_in">Sign in</string>
+    <string name="title_create_account">Create account</string>
 
     <!-- BUTTONS -->
-    <string name="add_to_cart">Add to cart</string>
-    <string name="payment">Go to payment</string>
-    
+    <string name="btn_forgot_pass">Forgot your password?</string>
+    <string name="btn_create_account">Create an account</string>
+    <string name="btn_sign_in">Sign in</string>
+
+    <!-- FAB -->
+    <string name="fab_payment">Go to payment</string>
+    <string name="fab_login">Login</string>
+    <string name="fab_create">Create</string>
+    <string name="fab_add_to_cart">Add to cart</string>
+
+    <!-- TEXT FIELDS -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Name/Nickname</string>
+
+    <!-- ERROR -->
+    <string name="error_email_is_too_short">Email must be more than 5 characters</string>
+    <string name="error_name_is_empty">Name/Nickname cannot be empty</string>
+    <string name="error_pass_is_too_short">Password must be more than 5 characters</string>
+    <string name="error_email_or_pass_is_incorrect">Email or password is incorrect</string>
     
 </resources>

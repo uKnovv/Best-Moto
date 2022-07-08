@@ -16,7 +16,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/home_title" />
+            app:title="@string/title_home" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

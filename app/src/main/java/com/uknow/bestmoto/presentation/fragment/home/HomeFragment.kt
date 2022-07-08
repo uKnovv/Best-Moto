@@ -1,10 +1,8 @@
 package com.uknow.bestmoto.presentation.fragment.home
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -13,35 +11,27 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uknow.bestmoto.R
 import com.uknow.bestmoto.databinding.FragmentHomeBinding
-import com.uknow.bestmoto.model.Bike
-import com.uknow.bestmoto.model.Equipment
+import com.uknow.bestmoto.model.Item
 import com.uknow.bestmoto.presentation.activity.main.SharedViewModel
-import com.uknow.bestmoto.presentation.adapter.BikesAdapter
-import com.uknow.bestmoto.presentation.adapter.EquipmentAdapter
+import com.uknow.bestmoto.presentation.adapter.ItemAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home),
-    BikesAdapter.BikeItemCallback,
-    EquipmentAdapter.EquipmentItemCallBack
+    ItemAdapter.ItemCallback
 {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private val bikesDataSet = mutableListOf<Bike>()
-    private val equipmentDataSet = mutableListOf<Equipment>()
+    private val bikesDataSet = mutableListOf<Item>()
+    private val equipmentDataSet = mutableListOf<Item>()
 
     private val sharedViewModel by activityViewModels<SharedViewModel>()
     private lateinit var viewModel: HomeFragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(this)[HomeFragmentViewModel::class.java]
-
-        // Delete it later pls
-        bikesDataSet.add(Bike("Nigga"))
-        bikesDataSet.add(Bike("Nigga"))
-        equipmentDataSet.add(Equipment("Eldak"))
-        equipmentDataSet.add(Equipment("Analnya Zatiychka"))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,11 +48,11 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     private fun setupRecyclers() {
         binding.run {
             rvBikes.apply {
-                adapter = BikesAdapter(dataSet = bikesDataSet, callback = this@HomeFragment)
+                adapter = ItemAdapter(dataSet = bikesDataSet, callback = this@HomeFragment)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             rvEquipment.apply {
-                adapter = EquipmentAdapter(dataSet = equipmentDataSet, callback = this@HomeFragment)
+                adapter = ItemAdapter(dataSet = equipmentDataSet, callback = this@HomeFragment)
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
         }
@@ -78,10 +68,24 @@ class HomeFragment : Fragment(R.layout.fragment_home),
     }
 
     private fun updateUI(state: HomeFragmentState) {
+        if (state.isLoading == true) {
 
+        }
+
+        if (state.data_bikes != null) {
+
+        }
+
+        if (state.data_equipment != null) {
+
+        }
+
+        if (state.error != null) {
+
+        }
     }
 
-    private fun clearAndUpdateBikesRecycler(newDataSet: List<Bike>) {
+    private fun clearAndUpdateBikesRecycler(newDataSet: List<Item>) {
         val adapter = binding.rvBikes.adapter
 
         // Clear old data
@@ -94,7 +98,7 @@ class HomeFragment : Fragment(R.layout.fragment_home),
         adapter?.notifyItemRangeInserted(0, newDataSet.size)
     }
 
-    private fun clearAndUpdateEquipmentRecycler(newDataSet: List<Equipment>) {
+    private fun clearAndUpdateEquipmentRecycler(newDataSet: List<Item>) {
         val adapter = binding.rvEquipment.adapter
 
         // Clear old data
@@ -107,24 +111,13 @@ class HomeFragment : Fragment(R.layout.fragment_home),
         adapter?.notifyItemRangeInserted(0, newDataSet.size)
     }
 
-    override fun onClick(bike: Bike, position: Int) {
+    override fun onClick(bike: Item, position: Int) {
         sharedViewModel.setSelectedBike(bike)
-        navigateToBikeDetails()
+        navigateToDetails()
     }
 
-    override fun onClick(equipment: Equipment, position: Int) {
-        sharedViewModel.setSelectedEquipment(equipment)
-        navigateToEquipmentDetails()
-    }
-
-    private fun navigateToBikeDetails() {
+    private fun navigateToDetails() {
         val directions = HomeFragmentDirections.actionHomeFragmentToBikeDetailFragment()
-        val extras = FragmentNavigatorExtras()
-        findNavController().navigate(directions, extras)
-    }
-
-    private fun navigateToEquipmentDetails() {
-        val directions = HomeFragmentDirections.actionHomeFragmentToEquipmentDetailFragment()
         val extras = FragmentNavigatorExtras()
         findNavController().navigate(directions, extras)
     }

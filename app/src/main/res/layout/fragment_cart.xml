@@ -15,7 +15,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/cart_title" />
+            app:title="@string/title_cart" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -33,7 +33,7 @@
         app:iconGravity="end"
         android:id="@+id/fabPay"
         app:icon="@drawable/ic_arrow_forward_ios_48"
-        android:text="@string/payment"
+        android:text="@string/fab_payment"
         android:layout_height="wrap_content"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
